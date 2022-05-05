@@ -1172,9 +1172,6 @@ int LIBVIS_MAIN(int argc, char **argv) {
       (*buffer_ptr)->UploadAsync(upload_stream, *pagelocked_ptr);
       cudaEventRecord(depth_image_upload_post_event, upload_stream);
     }
-    if(frame_index >=  rgbd_video.frame_count() - outlier_filtering_frame_count / 2 -1)
-      std::cout<<frame_index<<" 9"<<std::endl;
-
     // Swap color image pointers and upload the next color frame to the GPU.
     std::swap(next_color_buffer, color_buffer);
     std::swap(next_color_buffer_pagelocked, color_buffer_pagelocked);
@@ -1246,7 +1243,6 @@ int LIBVIS_MAIN(int argc, char **argv) {
     frame_index -= outlier_filtering_frame_count/2;
     // --------------------------------------------------
 
-    std::cout<<temp<<"/"<<rgbd_video.frame_count()-1<<" temp = "<<frame_index<<std::endl;
     // Get and display input images.
     ImageFramePtr<Vec3u8, SE3f> color_frame =
         rgbd_video.color_frame_mutable(frame_index);
@@ -1497,7 +1493,7 @@ int LIBVIS_MAIN(int argc, char **argv) {
     bool is_last_frame = frame_index == rgbd_video.frame_count() -
                                             outlier_filtering_frame_count / 2 -
                                             1;
-    std::cout<< is_last_frame <<std::endl;
+
     if (no_meshing_in_progress || next_meshing_expected_soon ||
         (final_result_required && is_last_frame)) {
       cudaEventRecord(surfel_transfer_start_event, stream);
