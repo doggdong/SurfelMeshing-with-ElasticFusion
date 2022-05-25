@@ -18,8 +18,7 @@ find_library(EFUSION_LIBRARY
              PATHS
               #  ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/build
               #  ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/src/build
-              /home/dog/Documents/article/Elastic/code/ElasticFusion1/Core/build
-              /home/dog/Documents/article/Elastic/code/ElasticFusion1/Core/src/build
+
              PATH_SUFFIXES ${EFUSION_PATH_SUFFIXES}
 )
 
